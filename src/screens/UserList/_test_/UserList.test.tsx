@@ -6,12 +6,23 @@ jest.useFakeTimers();
 import {act, renderHook} from '@testing-library/react-native';
 
 import UserList from '@src/screens/UserList';
-import ViewController, {GET_USER} from '@src/screens/UserList/ViewController';
+import ViewController from '@src/screens/UserList/ViewController';
 import {MockedProvider} from '@apollo/client/testing';
 import {UserRoles} from '@src/Constant';
 import {ZellerCustomer} from './Users.test';
+import {GET_USER} from '@src/components/services/userQueries';
 
 jest.useFakeTimers();
+
+const mockedNavigation = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+  return {
+    useNavigation: () => ({
+      navigate: mockedNavigation,
+    }),
+  };
+});
 
 const userMock = {
   delay: 30,
@@ -31,19 +42,17 @@ const userMock = {
   },
 };
 
-it('Express screen SnapShot testing', () => {
+it('User List screen Snapshot testing', () => {
   const tree = create(
     <MockedProvider mocks={[userMock]} addTypename={false}>
-      <NavigationContainer>
-        <UserList />
-      </NavigationContainer>
+      <UserList />
     </MockedProvider>,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-test('should update Result', () => {
+test('View Controller State variable test', () => {
   const wrapper = ({children}: any) => (
     <MockedProvider mocks={[userMock]} addTypename={false}>
       {children}

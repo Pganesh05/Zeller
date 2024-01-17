@@ -35,15 +35,16 @@ export const ZellerCustomer: CustomerList = [
   },
 ];
 
-describe('Test Radio Button Screen', () => {
+describe('Test User Component', () => {
   const onChangeRole = () => jest.fn();
-
+  const navigationToUserDetail = () => jest.fn();
   const UserComponent = (
     <Users
       selectedRole={UserRoles.Admin}
       onRefresh={onChangeRole}
       loading={false}
       customers={ZellerCustomer}
+      navigateToUserDetail={navigationToUserDetail}
     />
   );
 

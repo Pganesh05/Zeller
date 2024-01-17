@@ -5,11 +5,19 @@ import Title from '@src/components/Title';
 import UserCard from '@src/components/UserCard';
 import {UserType, UsersPropType} from './types';
 
-function Users({selectedRole, customers, onRefresh, loading}: UsersPropType) {
+function Users({
+  selectedRole,
+  customers,
+  onRefresh,
+  loading,
+  navigateToUserDetail,
+}: UsersPropType) {
   return (
     <FlatList
       data={customers}
-      renderItem={({item}: UserType) => <UserCard item={item} />}
+      renderItem={({item}: UserType) => (
+        <UserCard item={item} onNavigate={navigateToUserDetail} />
+      )}
       ListHeaderComponent={<Title title={`${selectedRole} User`} />}
       ListFooterComponent={Separator}
       refreshControl={

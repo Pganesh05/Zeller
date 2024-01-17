@@ -7,7 +7,7 @@ import ViewController from '@src/components/App/ViewController';
 
 jest.useFakeTimers();
 
-it('separator SnapShot Testing', () => {
+it('App Screen SnapShot Testing', () => {
   const tree = create(<App />).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -15,7 +15,7 @@ it('separator SnapShot Testing', () => {
 
 jest.useFakeTimers();
 
-it('separator SnapShot Testing', () => {
+it('App Screen View Controller State variable Test', () => {
   const AppComponent = <App />;
   const tree = create(AppComponent).toJSON();
 

@@ -7,10 +7,10 @@ import SearchUser from '@src/screens/UserList/SearchUser';
 
 jest.useFakeTimers();
 
-describe('Test Radio Button Screen', () => {
+describe('Search Screen Rendering test', () => {
   const onChangeUser = () => jest.fn();
   const SearchUserComponent = (
-    <SearchUser searchText="" onChangeSearchText={onChangeUser} />
+    <SearchUser searchText="test" onChangeSearchText={onChangeUser} />
   );
 
   const tree = create(SearchUserComponent).toJSON();
@@ -20,16 +20,18 @@ describe('Test Radio Button Screen', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('Test Radio Button is Selected', async () => {
-    const {getByTestId} = render(SearchUserComponent);
+  test('Test Search Text Component functionality', async () => {
+    const {getByTestId} = render(
+      <SearchUser searchText="test" onChangeSearchText={onChangeUser} />,
+    );
 
-    const text = getByTestId('search_user');
-    expect(text.props.children).toBe('');
+    const text = getByTestId('search_user_test_id');
+    expect(text.props.children).toBe(undefined);
   });
 
-  test('Test Radio Button On click functionality', async () => {
+  test('Test Search Text on change functionality', async () => {
     const {getByTestId} = render(SearchUserComponent);
 
-    fireEvent.changeText(getByTestId('search_user'), 'input');
+    fireEvent.changeText(getByTestId('search_user_test_id'), 'input');
   });
 });

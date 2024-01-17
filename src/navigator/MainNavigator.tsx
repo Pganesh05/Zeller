@@ -13,6 +13,7 @@ function MainNavigator() {
         {Array.from(
           MainNavigatorScreens,
           ({Component, name}: ScreenNavigatorType) => {
+            console.log(name)
             return (
               <MainStackNavigator.Screen
                 component={Component}

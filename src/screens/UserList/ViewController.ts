@@ -1,19 +1,14 @@
 import {UserRoles} from '@src/Constant';
 import {useCallback, useEffect, useState} from 'react';
-import {gql, useLazyQuery} from '@apollo/client';
-
-export const GET_USER = gql`
-  query ExampleQuery($filter: TableZellerCustomerFilterInput) {
-    listZellerCustomers(filter: $filter) {
-      items {
-        email
-        id
-        role
-        name
-      }
-    }
-  }
-`;
+import {useLazyQuery} from '@apollo/client';
+import {GET_USER} from '@src/components/services/userQueries';
+import {
+  fetchUserByRoleName,
+  fetchUserByRoleVariable,
+} from '@src/components/services/userServices';
+import useDebounce from '@src/customHook/useDebounce';
+import {useNavigation} from '@react-navigation/native';
+import {ScreenName} from '@src/navigator/Constant';
 
 function ViewController() {
   const [selectedRole, setSelectedRole] = useState<UserRoles>(UserRoles.Admin);
@@ -21,28 +16,24 @@ function ViewController() {
   const [getUser, {loading, data}] = useLazyQuery(GET_USER);
 
   const [textInputText, setTextInputText] = useState<string>('');
+  const debouncedValue = useDebounce(textInputText, 500);
+
+  const navigation = useNavigation();
 
   const fetchUserByRole = useCallback(
-    function (textInputValue?: string) {
-      getUser({
-        variables: {
-          filter: {
-            role: {
-              eq: selectedRole,
-            },
-            name: {
-              contains: 'test',
-            },
-          },
-        },
-      });
+    function () {
+      getUser(fetchUserByRoleVariable(selectedRole));
     },
     [getUser, selectedRole],
   );
 
   useEffect(() => {
-    fetchUserByRole(textInputText);
-  }, [fetchUserByRole, textInputText]);
+    getUser(fetchUserByRoleName(textInputText));
+  }, [debouncedValue, getUser]);
+
+  useEffect(() => {
+    fetchUserByRole();
+  }, [fetchUserByRole]);
 
   function onSearchUser(text: string) {
     setTextInputText(text);
@@ -56,6 +47,10 @@ function ViewController() {
     [fetchUserByRole],
   );
 
+  function navigateToUserDetail(): void {
+    navigation.navigate(ScreenName.USER_DETAILS);
+  }
+
   return {
     selectedRole,
     onSelectUserRole,
@@ -64,6 +59,7 @@ function ViewController() {
     onSearchUser,
     fetchUserByRole,
     loading,
+    navigateToUserDetail,
   };
 }
 

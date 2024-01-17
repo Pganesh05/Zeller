@@ -13,7 +13,7 @@ function SearchUser({searchText, onChangeSearchText}: SearchUserPropType) {
         style={styles.textInputStyles}
         value={searchText}
         onChangeText={onChangeSearchText}
-        testID="search_user"
+        testID="search_user_test_id"
       />
     </>
   );

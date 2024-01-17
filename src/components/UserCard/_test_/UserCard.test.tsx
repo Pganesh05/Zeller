@@ -8,7 +8,7 @@ import {UserRoles} from '@src/Constant';
 
 jest.useFakeTimers();
 
-describe('Test Radio Button Screen', () => {
+describe('User Card Component Test', () => {
   afterEach(cleanup);
   const item = {
     email: 'test@gmail.com',
@@ -17,7 +17,10 @@ describe('Test Radio Button Screen', () => {
     role: UserRoles.Admin,
   };
 
-  const UserCardComponent = <UserCard item={item} />;
+  const navigationToUserDetail = jest.fn();
+  const UserCardComponent = (
+    <UserCard item={item} onNavigate={navigationToUserDetail} />
+  );
 
   const tree = create(UserCardComponent).toJSON();
 

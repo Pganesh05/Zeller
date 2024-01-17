@@ -20,9 +20,15 @@ export type UsersPropType = {
   selectedRole: UserRoles;
   onRefresh: () => void;
   loading: boolean;
+  navigateToUserDetail: () => void;
 };
 
 export type UserType = {
+  item: CustomerType;
+};
+
+export type UserCardPropType = {
+  onNavigate: () => void;
   item: CustomerType;
 };
 
@@ -44,4 +50,5 @@ export type ViewControllerReturnType = {
   onSearchUser: (text: string) => void;
   fetchUserByRole: (text?: string) => void;
   loading: boolean;
+  navigateToUserDetail: () => void;
 };

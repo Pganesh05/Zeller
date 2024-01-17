@@ -7,7 +7,7 @@ import {UserRoles} from '@src/Constant';
 
 jest.useFakeTimers();
 
-describe('Test Radio Button Screen', () => {
+describe('Test User Role Component Test', () => {
   const onChangeRole = () => jest.fn();
   const SearchUserComponent = (
     <UserRole selectedRole={UserRoles.Admin} onSelectUserRole={onChangeRole} />

@@ -7,7 +7,7 @@ import RadioButtonWithLabel from '@src/components/RadioButtonWithLabel';
 
 jest.useFakeTimers();
 
-describe('Test Radio Button Screen', () => {
+describe('Test Radio Button Component', () => {
   const onSelect = () => jest.fn();
   const RadioButtonComponent = (
     <RadioButtonWithLabel

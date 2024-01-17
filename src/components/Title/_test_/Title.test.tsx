@@ -5,7 +5,7 @@ import {create} from 'react-test-renderer';
 
 import Title from '@src/components/Title';
 
-describe('Test Radio Button Screen', () => {
+describe('Title Component testing', () => {
   const findCodeComponent = <Title title={'User Role'} />;
 
   const tree = create(findCodeComponent).toJSON();
@@ -13,7 +13,7 @@ describe('Test Radio Button Screen', () => {
   //SnapShot testing
   expect(tree).toMatchSnapshot();
 
-  test('Test Radio Button is Selected', async () => {
+  test('Title text rendering test', async () => {
     const {getByTestId} = render(findCodeComponent);
 
     const text = getByTestId('title_text');

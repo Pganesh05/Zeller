@@ -18,6 +18,7 @@ function UsersList() {
     loading,
     fetchUserByRole,
     ZellerCustomer,
+    navigateToUserDetail,
   }: ViewControllerReturnType = ViewController();
   const style = styles();
   return (
@@ -35,6 +36,7 @@ function UsersList() {
         selectedRole={selectedRole}
         onRefresh={fetchUserByRole}
         loading={loading}
+        navigateToUserDetail={navigateToUserDetail}
       />
     </View>
   );
