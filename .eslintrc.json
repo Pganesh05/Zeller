@@ -1,0 +1,53 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "react-native/react-native": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:jest/recommended",
+      "eslint:recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:react/jsx-runtime"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "react-native",
+      "jest",
+  
+      "react-hooks",
+      "prettier"
+    ],
+    "rules": {
+      "indent": ["error", "tab"],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "single"],
+      "semi": ["error", "always"],
+      "react-native/no-unused-styles": 2,
+      "react-native/split-platform-components": 2,
+      "react-native/no-inline-styles": 1,
+      "react-native/no-color-literals": 2,
+      "react-native/no-raw-text": 2,
+      "react-native/sort-styles": [
+        "error",
+        "asc",
+        {
+          "ignoreClassNames": false,
+          "ignoreStyleProperties": false,          
+        }
+      ]
+    }
+  }
+  
